@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/base.css">
+    <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <title>My blog</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>The Blog of Things</h1>
+        <p>Look upon my field of things, and behold, they say nothing</p>
+      </header>
+      <nav>
+        <ul id="menu">
+          <li>Articles</li>
+          <li>Categories</li>
+          <li>Authors</li>
+        </ul>
+      </nav>
+      <section id="articles">
+        <article class="template" data-category="cat">
+          <header>
+            <h1>Title<h1>
+            <div class="byline">
+              by <address><a href="">Author Name</a></address>
+              published <time pubdate datetime="2000-01-01">Publish Time</time>
+            </div>
+          </header>
+          <section class="article-body"></section>
+        </article>
+      </section>
+    </main>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+    <script src='scripts/article.js'></script>
+    <script src='scripts/blogArticles.js'></script>
+  </body>
+</html>
