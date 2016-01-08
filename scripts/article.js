@@ -1,20 +1,25 @@
 var articles = [];
 
-function article(data) {//constructor function for blogArticles
+function Article(data) {//constructor function for blogArticles
   this.title = data.title,
   this.category = data.category,
   this.author = data.author,
   this.authorUrl = data.authorUrl,
   this.publishedOn = data.publishedOn,
   this.body = data.body;
-}
+};
 
-article.prototype.toHtml = function () {//converts articles into html
-  var $newArticle = $('#article.template').clone();
+Article.prototype.toHtml = function () {//converts articles into html
+  var $newArticle = $('article.template').clone();//clones the template class from the id article
 
   $newArticle.data('category', this.category);
 
-  //enter jQuery code to grab template code and fill in with content from blogArticles.js  
+  $newArticle.find('h1').html(this.title);
+  $newArticle.find('address').html(this.author);
+  $newArticle.find('time').html(this.publishedOn);
+  $newArticle.find('.article-body').html(this.body);//creates html from the article constructor to the JQ object, now to append it to the DOM.
+
+  //enter jQuery code to grab template code and fill in with content from blogArticles.js
   //need to fill in: name, title, body text, Url, publication Date
   //publication date displays when hovering over Title
 
@@ -24,23 +29,22 @@ article.prototype.toHtml = function () {//converts articles into html
 
   $newArticle.append('<hr>');
 
-  $newArticle.removeClass('.template');//removes template class from cloned article
+  $newArticle.removeClass('template');//removes template class from cloned article
 
   return $newArticle;
 };
 
-rawData.sort(function (a, b) {
-  return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-});
+$(document).ready(function () {
 
-rawData.forEach(function(ele) {
-  articles.push(new article(ele));
-});
+  rawData.sort(function (a, b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  });
 
-rawData.forEach(function(ele) {
-  articles.push(new Article(ele));
-});
+  rawData.forEach(function(post) {
+    articles.push(new Article(post));
+  });
 
-articles.forEach(function(a){
-  $('#articles').append(a.tohtml());
+  articles.forEach(function(a){
+    $('#articles').append(a.toHtml());
+  });
 });
